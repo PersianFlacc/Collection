@@ -10,28 +10,28 @@ public class Main {
 
         List<MyClass> arrayList = new ArrayList<>();
         System.out.println("ArrayList: Время добавления: " + addElement(arrayList));
-        //System.out.println("ArrayList: Время удаления: " + removeElement(arrayList));
+        System.out.println("ArrayList: Время удаления: " + removeElement(arrayList));
         System.out.println("ArrayList: Время поиска: " + findElement(arrayList, myClass));
 
         System.out.println("----------------------");
 
         List<MyClass> linkList = new LinkedList<>();
         System.out.println("LinkedList: Время добавления: " + addElement(linkList));
-        //System.out.println("LinkedList: Время удаления: " + removeElement(linkList));
+        System.out.println("LinkedList: Время удаления: " + removeElement(linkList));
         System.out.println("LinkedList: Время поиска: " + findElement(linkList, myClass));
 
         System.out.println("----------------------");
 
         TreeSet<MyClass> treeSet = new TreeSet<>();
         System.out.println("TreeSet: Время добавления: " + addElement(treeSet));
-        //System.out.println("TreeSet: Время удаления: " + removeElement(treeSet));
+        System.out.println("TreeSet: Время удаления: " + removeElement(treeSet));
         System.out.println("TreeSet: Время поиска: " + findElement(treeSet, myClass));
 
         System.out.println("----------------------");
 
         HashSet<MyClass> hashSet = new HashSet<>();
         System.out.println("HashSet: Время добавления: " + addElement(hashSet));
-        //System.out.println("HashSet: Время удаления: " + removeElement(hashSet));
+        System.out.println("HashSet: Время удаления: " + removeElement(hashSet));
         System.out.println("HashSet: Время поиска: " + findElement(hashSet, myClass));
     }
 
@@ -61,13 +61,6 @@ public class Main {
 
     public static long findElement (Collection collection, MyClass myClass){
         long startTime = System.currentTimeMillis();
-        //while (collection.iterator().hasNext()){
-            //if (collection.iterator().next().equals(myClass)){
-                //System.out.println("Find: " + myClass.getId());
-                //break;
-            //}
-            //collection.iterator().next();
-        //}
         for (Object item : collection) {
             if (item.equals(myClass)){
                 System.out.println("Find: " + myClass.getId());
