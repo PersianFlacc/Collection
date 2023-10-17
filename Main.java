@@ -2,29 +2,78 @@ import java.util.*;
 
 public class Main {
 
+    public static final int SIZE = 500000;
+
     public static void main(String[] args) {
 
-        long startTime = System.currentTimeMillis();
+        MyClass myClass = new MyClass((int) (Math.random()*SIZE), new String());
 
-        ArrayList<Integer> list = new ArrayList<>(500000);
-
-        /*for (int i = 0; i < 500000; i++) {
-            list.add(i);
-        }*/
-
-        System.out.println(System.currentTimeMillis() - startTime);
-        list.clear();
+        List<MyClass> arrayList = new ArrayList<>();
+        System.out.println("ArrayList: Время добавления: " + addElement(arrayList));
+        //System.out.println("ArrayList: Время удаления: " + removeElement(arrayList));
+        System.out.println("ArrayList: Время поиска: " + findElement(arrayList, myClass));
 
         System.out.println("----------------------");
 
-        long startTime1 = System.currentTimeMillis();
+        List<MyClass> linkList = new LinkedList<>();
+        System.out.println("LinkedList: Время добавления: " + addElement(linkList));
+        //System.out.println("LinkedList: Время удаления: " + removeElement(linkList));
+        System.out.println("LinkedList: Время поиска: " + findElement(linkList, myClass));
 
-        LinkedList<Integer> list1 = new LinkedList<>();
+        System.out.println("----------------------");
 
-        for (int i = 0; i < 500000; i++) {
-            list1.add(i);
+        TreeSet<MyClass> treeSet = new TreeSet<>();
+        System.out.println("TreeSet: Время добавления: " + addElement(treeSet));
+        //System.out.println("TreeSet: Время удаления: " + removeElement(treeSet));
+        System.out.println("TreeSet: Время поиска: " + findElement(treeSet, myClass));
+
+        System.out.println("----------------------");
+
+        HashSet<MyClass> hashSet = new HashSet<>();
+        System.out.println("HashSet: Время добавления: " + addElement(hashSet));
+        //System.out.println("HashSet: Время удаления: " + removeElement(hashSet));
+        System.out.println("HashSet: Время поиска: " + findElement(hashSet, myClass));
+    }
+
+    public static long addElement(Collection collection) {
+        long result = 0;
+        long startTime = System.currentTimeMillis();
+        generateCollection(collection);
+        result = System.currentTimeMillis() - startTime;
+        return result;
+    }
+
+    public static long removeElement(Collection collection) {
+        long startTime = System.currentTimeMillis();
+        while (collection.iterator().hasNext()){
+            collection.remove(collection.iterator().hasNext());
         }
-        System.out.println(System.currentTimeMillis() - startTime1);
-        list1.clear();
+        return System.currentTimeMillis() - startTime;
+    }
+
+    public static Collection generateCollection (Collection collection){
+
+        for (int i = 0; i < SIZE; i++) {
+            collection.add(new MyClass(i, new String()));
+        }
+        return collection;
+    }
+
+    public static long findElement (Collection collection, MyClass myClass){
+        long startTime = System.currentTimeMillis();
+        //while (collection.iterator().hasNext()){
+            //if (collection.iterator().next().equals(myClass)){
+                //System.out.println("Find: " + myClass.getId());
+                //break;
+            //}
+            //collection.iterator().next();
+        //}
+        for (Object item : collection) {
+            if (item.equals(myClass)){
+                System.out.println("Find: " + myClass.getId());
+                break;
+            }
+        }
+        return System.currentTimeMillis() - startTime;
     }
 }
