@@ -1,3 +1,5 @@
+package p1;
+
 import java.util.Objects;
 
 public class MyClass implements Comparable <MyClass> {

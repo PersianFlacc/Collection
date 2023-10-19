@@ -1,3 +1,5 @@
+package p1;
+
 import java.util.*;
 
 public class Main {
@@ -33,6 +35,18 @@ public class Main {
         System.out.println("HashSet: Время добавления: " + addElement(hashSet));
         System.out.println("HashSet: Время удаления: " + removeElement(hashSet));
         System.out.println("HashSet: Время поиска: " + findElement(hashSet, myClass));
+
+        System.out.println("----------------------");
+
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        if (scanner.hasNextLine()){
+            System.out.printf("Вы ввели какую-то дичь!");
+
+        }else{
+            String str = scanner.nextLine();
+            System.out.println(str);
+        }
     }
 
     public static long addElement(Collection collection) {
@@ -52,7 +66,6 @@ public class Main {
     }
 
     public static Collection generateCollection (Collection collection){
-
         for (int i = 0; i < SIZE; i++) {
             collection.add(new MyClass(i, new String()));
         }
@@ -61,9 +74,11 @@ public class Main {
 
     public static long findElement (Collection collection, MyClass myClass){
         long startTime = System.currentTimeMillis();
-        for (Object item : collection) {
-            if (item.equals(myClass)){
-                System.out.println("Find: " + myClass.getId());
+        Iterator<MyClass> iterator = collection.iterator();
+        int i = 0;
+        while (iterator.hasNext()){
+            if (iterator.next().equals(myClass)){
+                System.out.println("Find " + myClass.getId());
                 break;
             }
         }
